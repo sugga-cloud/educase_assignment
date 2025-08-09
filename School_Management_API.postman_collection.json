@@ -1,0 +1,298 @@
+{
+  "info": {
+    "name": "School Management API",
+    "description": "A comprehensive collection for testing the School Management API endpoints",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        },
+        "description": "Check if the API is running and healthy"
+      },
+      "response": []
+    },
+    {
+      "name": "API Documentation",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Get API documentation and available endpoints"
+      },
+      "response": []
+    },
+    {
+      "name": "Add School",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Harvard University\",\n  \"address\": \"Cambridge, MA 02138, USA\",\n  \"latitude\": 42.3744,\n  \"longitude\": -71.1169\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addSchool",
+          "host": ["{{baseUrl}}"],
+          "path": ["addSchool"]
+        },
+        "description": "Add a new school to the database"
+      },
+      "response": []
+    },
+    {
+      "name": "Add School - MIT",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Massachusetts Institute of Technology\",\n  \"address\": \"Cambridge, MA 02139, USA\",\n  \"latitude\": 42.3601,\n  \"longitude\": -71.0589\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addSchool",
+          "host": ["{{baseUrl}}"],
+          "path": ["addSchool"]
+        },
+        "description": "Add MIT to the database"
+      },
+      "response": []
+    },
+    {
+      "name": "Add School - Stanford",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Stanford University\",\n  \"address\": \"Stanford, CA 94305, USA\",\n  \"latitude\": 37.4275,\n  \"longitude\": -122.1697\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addSchool",
+          "host": ["{{baseUrl}}"],
+          "path": ["addSchool"]
+        },
+        "description": "Add Stanford University to the database"
+      },
+      "response": []
+    },
+    {
+      "name": "List Schools - Boston Area",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listSchools?latitude=42.3601&longitude=-71.0589",
+          "host": ["{{baseUrl}}"],
+          "path": ["listSchools"],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "42.3601"
+            },
+            {
+              "key": "longitude",
+              "value": "-71.0589"
+            }
+          ]
+        },
+        "description": "Get schools sorted by proximity to Boston area"
+      },
+      "response": []
+    },
+    {
+      "name": "List Schools - San Francisco Area",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listSchools?latitude=37.7749&longitude=-122.4194",
+          "host": ["{{baseUrl}}"],
+          "path": ["listSchools"],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "37.7749"
+            },
+            {
+              "key": "longitude",
+              "value": "-122.4194"
+            }
+          ]
+        },
+        "description": "Get schools sorted by proximity to San Francisco area"
+      },
+      "response": []
+    },
+    {
+      "name": "Get School by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/school/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["school", "1"]
+        },
+        "description": "Get a specific school by its ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Validation Tests",
+      "item": [
+        {
+          "name": "Add School - Missing Name",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"Cambridge, MA 02138, USA\",\n  \"latitude\": 42.3744,\n  \"longitude\": -71.1169\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addSchool",
+              "host": ["{{baseUrl}}"],
+              "path": ["addSchool"]
+            },
+            "description": "Test validation - missing school name"
+          },
+          "response": []
+        },
+        {
+          "name": "Add School - Invalid Latitude",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test School\",\n  \"address\": \"Test Address\",\n  \"latitude\": 100,\n  \"longitude\": -71.1169\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addSchool",
+              "host": ["{{baseUrl}}"],
+              "path": ["addSchool"]
+            },
+            "description": "Test validation - invalid latitude (out of range)"
+          },
+          "response": []
+        },
+        {
+          "name": "List Schools - Missing Coordinates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/listSchools",
+              "host": ["{{baseUrl}}"],
+              "path": ["listSchools"]
+            },
+            "description": "Test validation - missing latitude and longitude parameters"
+          },
+          "response": []
+        },
+        {
+          "name": "List Schools - Invalid Coordinates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/listSchools?latitude=invalid&longitude=-71.0589",
+              "host": ["{{baseUrl}}"],
+              "path": ["listSchools"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "invalid"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-71.0589"
+                }
+              ]
+            },
+            "description": "Test validation - invalid latitude format"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Handling Tests",
+      "item": [
+        {
+          "name": "Get Non-existent School",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/school/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["school", "999"]
+            },
+            "description": "Test error handling - school not found"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/invalid-endpoint",
+              "host": ["{{baseUrl}}"],
+              "path": ["invalid-endpoint"]
+            },
+            "description": "Test 404 error handling"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+} 

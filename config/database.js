@@ -2,10 +2,10 @@ const mysql = require('mysql2/promise');
 require('dotenv').config();
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'school_management',
+  host: process.env.DB_HOST || 'mysql-educase.alwaysdata.net',
+  user: process.env.DB_USER || 'educase_start',
+  password: process.env.DB_PASSWORD || 'Chuggalchugga@123',
+  database: process.env.DB_NAME || 'educase_school_management',
   port: process.env.DB_PORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
